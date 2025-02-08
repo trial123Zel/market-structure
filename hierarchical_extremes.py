@@ -166,12 +166,12 @@ class HierarchicalExtremes:
 
 
 if __name__ == '__main__':
-    df = pd.read_parquet('BTCUSD.pq')
+    df = pd.read_parquet('Z:/blockchain/market_data/btcusd-1m-candle_kaggle/btcusd_1-min_data.parquet')
     he = HierarchicalExtremes(levels=5, atr_lookback=24 * 60)
 
-    h = df['high'].to_numpy()
-    l = df['low'].to_numpy()
-    c = df['close'].to_numpy()
+    h = df['High'].to_numpy()
+    l = df['Low'].to_numpy()
+    c = df['Close'].to_numpy()
     
     lvl3_low = np.full(c.shape[0], np.nan) 
     for i in range(len(h)):
@@ -180,7 +180,7 @@ if __name__ == '__main__':
         lvl3_low[i] = he.get_level_low_price(3)
     
     df['lvl3_low'] = lvl3_low
-    df['close'].plot()
+    df['Close'].plot()
     df['lvl3_low'].plot()
     plt.show()
      

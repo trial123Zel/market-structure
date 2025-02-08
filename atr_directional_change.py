@@ -102,12 +102,12 @@ class ATRDirectionalChange:
 
 if __name__ == '__main__':
 
-    df = pd.read_parquet('BTCUSD.pq') # 1min  
+    df = pd.read_parquet('Z:/blockchain/market_data/btcusd-1m-candle_kaggle/btcusd_1-min_data.parquet') # 1min  
     dc = ATRDirectionalChange(atr_lookback=24 * 60)
 
-    h = df['high'].to_numpy()
-    l = df['low'].to_numpy()
-    c = df['close'].to_numpy()
+    h = df['High'].to_numpy()
+    l = df['Low'].to_numpy()
+    c = df['Close'].to_numpy()
     for i in range(len(h)):
         dc.update(i, df.index, h, l, c)
 
